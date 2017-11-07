@@ -34,7 +34,7 @@ return [
             'home' => [
                 'type' => Literal::class,
                 'options' => [
-                    'route'    => '/',
+                    'route'    => '/skeleton',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',

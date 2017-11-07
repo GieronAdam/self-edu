@@ -31,8 +31,9 @@ return [
     'ZendDeveloperTools',
     'DoctrineModule',
     'DoctrineORMModule',
-    'Application',
+//    'Application', - Skeleton
     'Process',
     'Raspberry',
     'ZfcAdmin',
+    'FoodThinkTank'
 ];

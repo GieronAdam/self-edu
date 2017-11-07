@@ -34,14 +34,16 @@
         "psr-4": {
             "Application\\": "module/Application/src/",
             "Process\\": "module/Process/src/",
-            "Raspberry\\": "module/Raspberry/src/"
+            "Raspberry\\": "module/Raspberry/src/",
+            "FoodThinkTank\\": "module/FoodThinkTank/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "ApplicationTest\\": "module/Application/test/",
             "Process\\": "module/Process/test/",
-            "Raspberry\\": "module/Raspberry/test/"
+            "Raspberry\\": "module/Raspberry/test/",
+            "FoodThinkTank\\": "module/FoodThinkTank/test/"
         }
     },
     "extra": [],
