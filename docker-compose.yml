@@ -1,0 +1,23 @@
+version: '3'
+services:
+  zf3:
+    build: .
+    container_name: zf3_app
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www
+    links:
+        - zf3_mysql
+    restart: always
+  zf3_mysql:
+    image: mysql:5.7
+    container_name: zf3_mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=zend
+      - MYSQL_USER=zend
+      - MYSQL_PASSWORD=zend
+    restart: always
