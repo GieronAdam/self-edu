@@ -12,16 +12,16 @@
 
         <!-- Le styles -->
         <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
-            ->prependStylesheet($this->basePath('css/style.css'))
             ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
             ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+            ->prependStylesheet($this->basePath('css/style.css'))
         ?>
 
         <!-- Scripts -->
         <?= $this->headScript()
             ->prependFile($this->basePath('js/bootstrap.min.js'))
             ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
-            ->appendFile($this->basePath('js/custom.js'))
+            //->appendFile($this->basePath('js/custom.js'))
         ?>
     </head>
     <body>
@@ -41,6 +41,12 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<?= $this->url('home') ?>">Home</a></li>
+                        <li class="active"><a href="<?= $this->url('projects') ?>">Projects</a></li>
+                        <li class="active"><a href="<?= $this->url('people') ?>">People</a></li>
+                        <li class="active"><a href="<?= $this->url('activities') ?>">Additional Activities</a></li>
+                        <li class="active"><a href="<?= $this->url('workshop') ?>">Workshop</a></li>
+                        <li class="active"><a href="<?= $this->url('initiatives') ?>">Initiatives</a></li>
+                        <li class="active"><a href="<?= $this->url('contact') ?>">Contact</a></li>
                     </ul>
                 </div>
             </div>

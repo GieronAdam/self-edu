@@ -18,3 +18,5 @@ class IndexController extends AbstractActionController
         return $v->setTemplate('index/index.phtml');
     }
 }
+
+// TODO : Kategoria / POST

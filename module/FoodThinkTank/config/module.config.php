@@ -1,13 +1,14 @@
 <?php
 namespace FoodThinkTank;
 
+use FoodThinkTank\Controller\SubPage\SubPageController;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
-//            Controller\RaspberryExternalController::class => InvokableFactory::class,
+            Controller\SubPage\SubPageController::class => InvokableFactory::class,
         ],
     ],
     'router' => [
@@ -23,13 +24,65 @@ return [
                 ],
                 'may_terminate' => true,
                 'child_routes' => [
-//                    'request' => [
+                ],
+            ],
+            'projects' => [
+                'type'    => 'Literal',
+                'options' => [
+                    'route'    => '/projects',
+                    'defaults' => [
+                        'controller'    => SubPageController::class,
+                        'action'        => 'projects',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+                ],
+            ],
+            'people' => [
+                'type'    => 'Literal',
+                'options' => [
+                    'route'    => '/people',
+                    'defaults' => [
+                        'controller'    => SubPageController::class,
+                        'action'        => 'people',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+                ],
+            ],
+            'activities' => [
+                'type'    => 'Literal',
+                'options' => [
+                    'route'    => '/activities',
+                    'defaults' => [
+                        'controller'    => SubPageController::class,
+                        'action'        => 'activities',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+                ],
+            ],
+            'workshop' => [
+                'type'    => 'Literal',
+                'options' => [
+                    'route'    => '/workshop',
+                    'defaults' => [
+                        'controller'    => SubPageController::class,
+                        'action'        => 'workshop',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+//                    'subpage' => [
 //                        'type'    => 'Literal',
 //                        'options'=>[
-//                            'route'    => '/request',
+//                            'route'    => '/subpage',
 //                            'defaults' => [
-//                                'controller'    => Controller\IndexController::class,
-//                                'action'        => 'request',
+//                                'controller'    => Controller\SubPage\SubPageController::class,
+//                                'action'        => 'subpage',
 //                            ],
 //                        ],
 //                    ],
@@ -43,6 +96,32 @@ return [
 //                            ],
 //                        ],
 //                    ],
+                ],
+            ],
+            'initiatives' => [
+                'type'    => 'Literal',
+                'options' => [
+                    'route'    => '/initiatives',
+                    'defaults' => [
+                        'controller'    => SubPageController::class,
+                        'action'        => 'initiatives',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+                ],
+            ],
+            'contact' => [
+                'type'    => 'Literal',
+                'options' => [
+                    'route'    => '/contact',
+                    'defaults' => [
+                        'controller'    => SubPageController::class,
+                        'action'        => 'contact',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
                 ],
             ],
         ],
