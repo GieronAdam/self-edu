@@ -31,19 +31,19 @@ class RaspberryExternalExpander implements IRaspberryExternalExpander
         $client = new Client('http://agieron.ayz.pl/raspberry/reciveexternal', $this->conf);
         $client->setMethod('POST');
         $client->setParameterPost(['pin'=>$param[0]]);
-        $response = $client->send()->getBody();
-        $response = json_decode($response);
-        return $internalResponse->setContent(json_encode($response->pin));
+        $result = $client->send()->getBody();
+        $result = json_decode($result);
+        return $internalResponse->setContent(json_encode($result));
     }
 
     public function reciveRequest($param)
     {
-        $relay = $this->_prepRelayCommand($param[0]);
+        $relay = $this->_prepRelayCommand($param);
         $audio = $this->_prepareAudioCommand($param[1]);
-        $relayProcess = $this->processRunner(new Process($relay));
-        $audioProcess = $this->processRunner(new Process($audio));
+//        $relayProcess = $this->processRunner(new Process($relay));
+//        $audioProcess = $this->processRunner(new Process($audio));
 
-        return $this->response->setContent($relayProcess.'  '.$audioProcess);
+        return $this->response->setContent(json_encode($relay.'  '.$audio));
     }
 
 }

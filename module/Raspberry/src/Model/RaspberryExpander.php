@@ -35,7 +35,7 @@ class RaspberryExpander implements IRaspberryExpander
     public function _setData($data)
     {
         $this->data = $data;
-        $this->pin = $this->_prepRelayCommand($this->data[0]);
+        $this->pin = $this->_prepRelayCommand(['pin' => $this->data[0]]);
         $this->audioFile = $this->_prepareAudioCommand($this->data[1]);
         return $this->data;
     }
@@ -58,7 +58,7 @@ class RaspberryExpander implements IRaspberryExpander
      */
     public function _getresult()
     {
-        $result = $this->processRunner(new Process($this->audioFile));
+//        $result = $this->processRunner(new Process($this->audioFile));
 
         if ($this->_getAudioStatus() == 'status0'){
 //            $this->processRunner(new Process('pkill mpg123'));
@@ -68,7 +68,7 @@ class RaspberryExpander implements IRaspberryExpander
 //        $this->processRunner(new Process());
 //        $this->processRunner(new Process($this->audioFile));
 
-        return ($this->pin.'    '.$result);
+        return ($this->pin);
     }
 
 }

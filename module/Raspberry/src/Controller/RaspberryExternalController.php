@@ -14,7 +14,6 @@ class RaspberryExternalController extends AbstractActionController
     {
         $expander = new Expander();
         $data = $this->getRequest()->getPost();
-
         $result = $expander->setRequest($data['data']);
 
         return $result;
@@ -27,7 +26,7 @@ class RaspberryExternalController extends AbstractActionController
         $expander = new Expander();
         $expander->reciveRequest($data);
 
-        return $response->setContent(json_encode($data));
+        return $response->setContent(json_encode($expander->reciveRequest($data)));
     }
 
 }

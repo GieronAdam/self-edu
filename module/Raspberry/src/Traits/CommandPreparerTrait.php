@@ -12,7 +12,7 @@ trait CommandPreparerTrait {
 
     public function _prepRelayCommand($param)
     {
-        $pin = explode(" ",$param);
+        $pin = explode(" ",$param['pin']);
         $pin[2] = dechex(bindec($pin[2]));
         $pin[2] = str_pad($pin[2], 2, '0', STR_PAD_LEFT);
         $pin[2] = '0x'.$pin[2];
