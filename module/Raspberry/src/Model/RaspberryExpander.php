@@ -8,40 +8,65 @@ use Raspberry\Traits;
 use Zend\Http\Client;
 
 
-
+/**
+ * Class RaspberryExpander
+ * @package Raspberry\Model
+ */
 class RaspberryExpander implements IRaspberryExpander
 {
     use Traits\CommandPreparerTrait;
 
+    /**
+     * @var
+     */
     public $data;
+    /**
+     * @var
+     */
     public $audioFile;
+    /**
+     * @var
+     */
     public $pin;
+    /**
+     * @var
+     */
     public $logger;
+    /**
+     * @var
+     */
     public $status;
+    /**
+     * @var int
+     */
     public $ajaxArray = 2;
+    /**
+     * @var array
+     */
     private $commands = array(
         'i2c'=>'i2cset -y 1 ',
         'audio'=>'mpg123 public/media/'
     );
 
+    /**
+     * @param $data
+     */
     public function _getRequest($data)
     {
 
         $this->logger = new Logger();
         $this->logger->addWriter('stream', null, array('stream' => 'php://output'));
         $this->logger->log(Logger::INFO, $this->pin);
-
-       return $this->_setData($data);
+        $this->_setData($data);
     }
 
     /**
-     * @return array
+     * @param $data
      */
     public function _setData($data)
     {
         $this->data = $data;
         if($this->_dataCounter($this->data,$this->ajaxArray)){
-
             $this->pin = $this->_prepRelayCommand(['pin' => $this->data[0]],$this->_prepPrefix($this->commands,'i2c'));
             $this->audioFile = $this->_prepareAudioCommand($this->data[1],$this->_prepPrefix($this->commands,'audio'));
         } else {
@@ -52,13 +77,16 @@ class RaspberryExpander implements IRaspberryExpander
     }
 
     /**
-     * @return string
+     * @return mixed
      */
     public function _setAudioStatus()
     {
         return $this->status = end($this->data);
     }
 
+    /**
+     * @return mixed
+     */
     public function _getAudioStatus()
     {
         return $this->status;
@@ -73,13 +101,13 @@ class RaspberryExpander implements IRaspberryExpander
 
         if ($this->_getAudioStatus() == 'status0'){
 //            $this->processRunner(new Process('pkill mpg123'));
+            return 'włączone';
         } else {
 //            $this->processRunner(new Process('pkill mpg123'));
+            return $this->audioFile .'  ' . $this->_getAudioStatus() . '   ' . $this->pin;
         }
 //        $this->processRunner(new Process());
 //        $this->processRunner(new Process($this->audioFile));
-
-        return $this->audioFile .'  ' . $this->_getAudioStatus() . '   ' . $this->pin;
     }
 
 }

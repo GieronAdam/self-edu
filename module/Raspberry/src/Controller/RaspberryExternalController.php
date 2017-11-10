@@ -9,7 +9,9 @@ class RaspberryExternalController extends AbstractActionController
 {
 
 
-
+    /**
+     * @return \Zend\Stdlib\Message
+     */
     public function externalrequestAction()
     {
         $expander = new Expander();
@@ -19,6 +21,9 @@ class RaspberryExternalController extends AbstractActionController
         return $result;
     }
 
+    /**
+     * @return \Zend\Stdlib\Message
+     */
     public function reciveExternalAction()
     {
         $data = $this->getRequest()->getPost();

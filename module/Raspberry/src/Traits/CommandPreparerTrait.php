@@ -5,11 +5,11 @@ use Process\Process;
 
 trait CommandPreparerTrait {
 
-    /*
-     * @params string
-     * @return string
+    /**
+     * @param $param
+     * @param $prefix
+     * @return array|string
      */
-
     public function _prepRelayCommand($param, $prefix)
     {
         $pin = explode(" ", $param['pin']);
@@ -30,12 +30,13 @@ trait CommandPreparerTrait {
     {
         return $prefix.$param;
     }
-    /*
-     * @params array
-     * @params int (counter)
+
+    /**
+     * @param $array
+     * @param $param
      * @return bool
      */
-    public function _dataCounter($array,$param)
+    public function _dataCounter($array, $param)
     {
         if(count($array) > $param)
         {
@@ -45,18 +46,18 @@ trait CommandPreparerTrait {
         return false;
     }
 
-    /*
-     * @params array
-     * @params string / int
-     * @return array element
+    /**
+     * @param $param
+     * @param $name
+     * @return mixed
      */
-    public function _prepPrefix($param,$name)
+    public function _prepPrefix($param, $name)
     {
         return $param[$name];
     }
 
-    /*
-     * @params Process object
+    /**
+     * @param Process $process
      * @return string
      */
     public function processRunner(Process $process)
