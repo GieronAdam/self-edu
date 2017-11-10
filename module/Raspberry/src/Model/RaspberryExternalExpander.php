@@ -15,6 +15,7 @@ class RaspberryExternalExpander implements IRaspberryExternalExpander
     public $response;
     public $conf;
     public $process;
+    public $i2cset = 'i2cset -y 1 ';
 
     function __construct()
     {
@@ -38,11 +39,8 @@ class RaspberryExternalExpander implements IRaspberryExternalExpander
 
     public function reciveRequest($param)
     {
-        $relay = $this->_prepRelayCommand($param);
-        $audio = $this->_prepareAudioCommand($param[1]);
+        $relay = $this->_prepRelayCommand($param,$this->i2cset);
 //        $relayProcess = $this->processRunner(new Process($relay));
-//        $audioProcess = $this->processRunner(new Process($audio));
-
         return $relay;
     }
 

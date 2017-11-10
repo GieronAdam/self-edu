@@ -65,6 +65,8 @@ jQuery(document).ready(function($){
                             data : { data: pointData },
                             success : function(response){
                                 console.log(response);
+                                pointData.shift();
+                                console.log(pointData);
                                 $.ajax({
                                     type: "POST",
                                     url : "raspberry/request",

@@ -18,6 +18,11 @@ class RaspberryExpander implements IRaspberryExpander
     public $pin;
     public $logger;
     public $status;
+    public $ajaxArray = 2;
+    private $commands = array(
+        'i2c'=>'i2cset -y 1 ',
+        'audio'=>'mpg123 public/media/'
+    );
 
     public function _getRequest($data)
     {
@@ -35,9 +40,15 @@ class RaspberryExpander implements IRaspberryExpander
     public function _setData($data)
     {
         $this->data = $data;
-        $this->pin = $this->_prepRelayCommand(['pin' => $this->data[0]]);
-        $this->audioFile = $this->_prepareAudioCommand($this->data[1]);
-        return $this->data;
+        if($this->_dataCounter($this->data,$this->ajaxArray)){
+
+            $this->pin = $this->_prepRelayCommand(['pin' => $this->data[0]],$this->_prepPrefix($this->commands,'i2c'));
+            $this->audioFile = $this->_prepareAudioCommand($this->data[1],$this->_prepPrefix($this->commands,'audio'));
+        } else {
+
+            $this->audioFile = $this->_prepareAudioCommand($this->data[0],$this->_prepPrefix($this->commands,'audio'));
+        }
+        $this->_setAudioStatus();
     }
 
     /**
@@ -45,7 +56,7 @@ class RaspberryExpander implements IRaspberryExpander
      */
     public function _setAudioStatus()
     {
-        return $this->status = $this->data[2];
+        return $this->status = end($this->data);
     }
 
     public function _getAudioStatus()
@@ -68,7 +79,7 @@ class RaspberryExpander implements IRaspberryExpander
 //        $this->processRunner(new Process());
 //        $this->processRunner(new Process($this->audioFile));
 
-        return ($this->pin);
+        return $this->audioFile .'  ' . $this->_getAudioStatus() . '   ' . $this->pin;
     }
 
 }
