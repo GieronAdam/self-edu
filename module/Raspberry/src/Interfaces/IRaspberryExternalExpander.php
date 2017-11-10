@@ -4,5 +4,5 @@ namespace Raspberry\Interfaces;
 
 Interface IRaspberryExternalExpander
 {
-    public function getRequest();
+    public function setRequest($param);
 }

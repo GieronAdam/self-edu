@@ -34,3 +34,129 @@ div.container a.navbar-brand > img {
 * {
     box-sizing: border-box;
 }
+
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: darkslategray;
+    color: honeydew;
+}
+.title_ {
+    text-align: center;
+    padding-top: 30px;
+}
+.container {
+    width: 1400px;
+    margin: 0 auto;
+}
+.header {
+    display: block;
+    width: 100%;
+}
+.content {
+    display: block;
+    width: 100%;
+}
+.footer {
+    display: block;
+    width: 100%;
+    padding: 45px 0 45px 0;
+    text-align: center;
+}
+.navbar {
+    background-color: #d0dae5;
+    margin: 0 auto;
+    padding: 0;
+}
+.navbar__inner {
+    padding: 10px 10px 10px 10px;
+}
+.navbar__list {
+    list-style: none;
+}
+.navbar__item {
+    display: inline-block;
+    width: 32.25806%;
+}
+.navbar__item a {
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+    border: none;
+    padding: 14px 0px 13px 0px;
+    width: 30%;
+}
+.expanders {
+    display: block;
+}
+.expanders > li {
+    display: block;
+    float: left;
+}
+.expanders > li > a {
+    color: #fff;
+    width: 150px;
+    height: 50px;
+    display: block;
+}
+.expanders__relay {
+    border: 1px solid #fff;
+    text-align: center;
+    padding: 7px 2px;
+    margin: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 15px;
+    color: #000;
+}
+.on {
+    background-color: #747300;
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+.dispNone {
+    display: none;
+}
+.custom-text {
+    font-size: 17px;
+    text-align: left;
+    width: 80%;
+    padding: 10px;
+    height: 250px;
+    overflow: auto;
+    margin: auto;
+}
+.rasp__wrapper {
+    clear: both;
+    width: 80%;
+    margin: auto;
+}
+.rasp__defaults {
+    color: #fff;
+    float: left;
+    display: inline-block;
+    width: 25%;
+    border: 1px solid #fff;
+    text-align: center;
+    padding: 15px 0 20px;
+    margin: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.puller-container {
+    width: 50%;
+    margin: 0 auto;
+}
+.rasp-custom-button {
+    font-size: 15px;
+    display: block;
+    width: 250px !important;
+}

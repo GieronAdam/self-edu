@@ -36,9 +36,9 @@ jQuery(document).ready(function($){
                     var id = $(this).attr('relayId')
                     text = $(this).next().val()
                     content = $('#custom-text');
-                    content.css('height','0');
-                    // content.html('');
-                    // content.html(text);
+
+                    content.html('');
+                    content.html(text);
                     $(this).attr('pin', function(index, attr){
                         return attr == 1 ? 0 : 1;
                     });
@@ -60,7 +60,7 @@ jQuery(document).ready(function($){
                     if ($(this).attr('external') == 'true'){
                         console.log('external ajax');
                         $.ajax({
-                            type: "GET",
+                            type: "POST",
                             url : "raspberry/externalrequest",
                             data : { data: pointData },
                             success : function(response){

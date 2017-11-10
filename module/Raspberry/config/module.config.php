@@ -43,6 +43,16 @@ return [
                             ],
                         ],
                     ],
+                    'reciveExternal' => [
+                        'type'    => 'Literal',
+                        'options'=>[
+                            'route'    => '/reciveexternal',
+                            'defaults' => [
+                                'controller'    => Controller\RaspberryExternalController::class,
+                                'action'        => 'reciveExternal',
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ],

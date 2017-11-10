@@ -3,23 +3,25 @@ namespace Raspberry\Model;
 
 use Raspberry\Interfaces\IRaspberryExpander;
 use Process\Process as Process;
-use Process\ProcessBuilder;
-use Zend\Log;
 use Zend\Log\Logger as Logger;
+use Raspberry\Traits;
+use Zend\Http\Client;
+
 
 
 class RaspberryExpander implements IRaspberryExpander
 {
-    public $str;
+    use Traits\CommandPreparerTrait;
+
     public $data;
-    public $temp = array();
+    public $audioFile;
     public $pin;
     public $logger;
-    public $audioFile;
     public $status;
 
     public function _getRequest($data)
     {
+
         $this->logger = new Logger();
         $this->logger->addWriter('stream', null, array('stream' => 'php://output'));
         $this->logger->log(Logger::INFO, $this->pin);
@@ -28,37 +30,45 @@ class RaspberryExpander implements IRaspberryExpander
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function _prepRelayCommand()
-    {
-        $this->pin = explode(" ",$this->data[0]);
-        $this->pin[2] = dechex(bindec($this->pin[2]));
-        $this->pin[2] = str_pad($this->pin[2], 2, '0', STR_PAD_LEFT);
-        $this->pin[2] = '0x'.$this->pin[2];
-        $this->pin = implode(' ',$this->pin);
-        $this->pin = 'i2cset -y 1 '.$this->pin;
-        return $this->_prepareAudio();
-    }
-
-    public function _prepareAudio()
-    {
-        return $this->audioFile = 'mpg123 '.$this->data[1];
-    }
     public function _setData($data)
     {
         $this->data = $data;
-        $this->_prepRelayCommand();
+        $this->pin = $this->_prepRelayCommand($this->data[0]);
+        $this->audioFile = $this->_prepareAudioCommand($this->data[1]);
         return $this->data;
     }
 
+    /**
+     * @return string
+     */
+    public function _setAudioStatus()
+    {
+        return $this->status = $this->data[2];
+    }
 
+    public function _getAudioStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @return string
+     */
     public function _getresult()
     {
+        $result = $this->processRunner(new Process($this->audioFile));
 
+        if ($this->_getAudioStatus() == 'status0'){
+//            $this->processRunner(new Process('pkill mpg123'));
+        } else {
+//            $this->processRunner(new Process('pkill mpg123'));
+        }
+//        $this->processRunner(new Process());
+//        $this->processRunner(new Process($this->audioFile));
 
-
-        return json_encode($this->pin.'      '.$this->audioFile);
+        return ($this->pin.'    '.$result);
     }
 
 }
