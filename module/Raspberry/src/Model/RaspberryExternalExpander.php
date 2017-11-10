@@ -43,7 +43,7 @@ class RaspberryExternalExpander implements IRaspberryExternalExpander
 //        $relayProcess = $this->processRunner(new Process($relay));
 //        $audioProcess = $this->processRunner(new Process($audio));
 
-        return $this->response->setContent(json_encode($relay.'  '.$audio));
+        return $relay;
     }
 
 }
