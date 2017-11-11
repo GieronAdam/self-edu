@@ -101,7 +101,8 @@ class RaspberryExpander implements IRaspberryExpander
 
         if ($this->_getAudioStatus() == 'status0'){
 //            $this->processRunner(new Process('pkill mpg123'));
-            return 'włączone';
+
+            return $this->audioFile .'  ' . $this->_getAudioStatus() . '   ' . $this->pin;
         } else {
 //            $this->processRunner(new Process('pkill mpg123'));
             return $this->audioFile .'  ' . $this->_getAudioStatus() . '   ' . $this->pin;
